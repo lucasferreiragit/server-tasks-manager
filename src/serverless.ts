@@ -9,16 +9,27 @@ const initializeDatabase = async () => {
     console.log("Database connection has been established successfully.");
 
     // Sync all models
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log("All models were synchronized successfully.");
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    console.error("Database initialization error:", error);
+    // Don't throw the error, just log it
   }
 };
 
 // Initialize database on cold start
 initializeDatabase();
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
-  return app(req, res);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    // Check database connection before handling request
+    await sequelize.authenticate();
+    return app(req, res);
+  } catch (error) {
+    console.error("Request handling error:", error);
+    res.status(500).json({
+      error: "Internal Server Error",
+      message: "Database connection failed",
+    });
+  }
 }
