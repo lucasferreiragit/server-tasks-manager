@@ -40,10 +40,10 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, priority } = req.body;
+    const { title, description, priority, completed } = req.body;
 
     const [updated] = await Task.update(
-      { title, description, priority },
+      { title, description, priority, completed },
       { where: { id } }
     );
 
