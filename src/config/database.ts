@@ -1,5 +1,7 @@
-const { Sequelize } = require("sequelize");
-require("dotenv").config();
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 if (!process.env.DATABASE_URL) {
   throw new Error(
@@ -7,11 +9,11 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-const isProduction = process.env.NODE_ENV !== "development";
+const isProduction = process.env.NODE_ENV === "production";
 
 console.log("🚀 > isProduction ==> ", isProduction);
 
-const sequelizeConfig = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   protocol: "postgres",
   dialectOptions: isProduction
@@ -31,4 +33,4 @@ const sequelizeConfig = new Sequelize(process.env.DATABASE_URL, {
   },
 });
 
-module.exports = { sequelize: sequelizeConfig };
+export { sequelize };

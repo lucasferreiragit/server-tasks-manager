@@ -5,10 +5,10 @@ require("dotenv").config();
 const { dbConnection } = db;
 
 const PORT = process.env.PORT || 3001;
-const isDevelopment = process.env.NODE_ENV === "development";
+// const isDevelopment = process.env.NODE_ENV === "development";
 
 const syncOptions = {
-  ...(isDevelopment && { force: true }),
+  // ...(isDevelopment && { force: true }),
 };
 
 dbConnection
