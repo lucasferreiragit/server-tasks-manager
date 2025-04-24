@@ -47,8 +47,8 @@ export default (sequelize: any) => {
         defaultValue: false,
       },
       priority: {
-        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
-        defaultValue: "1",
+        type: DataTypes.ENUM("0", "1", "2", "3", "4"),
+        defaultValue: "0",
         allowNull: false,
       },
     },

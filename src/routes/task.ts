@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Task } from "../db";
-import { TaskAttributes, TaskCreationAttributes } from "../models/Task";
+import { TaskCreationAttributes } from "../models/Task";
 
 // TODO: maybe improve this by using a service layer
 
@@ -62,6 +62,11 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: "Task ID is required" });
+    }
+
     const deleted = await Task.destroy({ where: { id } });
 
     if (deleted === 0) {
@@ -77,5 +82,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// archive task
 export default router;
