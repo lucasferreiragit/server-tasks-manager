@@ -9,8 +9,7 @@
     "build": "tsc",
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "vercel-build": "npm run build"
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +31,6 @@
     "@types/sequelize": "^4.28.20",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
-    "@vercel/node": "^5.1.14",
     "eslint": "^8.57.0",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
