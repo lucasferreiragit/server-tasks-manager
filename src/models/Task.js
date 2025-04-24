@@ -22,7 +22,12 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      priority: {
+        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
+        defaultValue: "1",
+        allowNull: false,
+      },
     },
-    { timestamps: false }
+    { timestamps: true, createdAt: "createdAt", updatedAt: "updatedAt" }
   );
 };

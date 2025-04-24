@@ -16,7 +16,7 @@ const sequelizeConfig = {
     host: DB_HOST,
     port: parseInt(DB_PORT, 10),
     dialect: "postgres",
-    logging: console.log,
+    logging: false,
   },
   production: {
     username: DB_USER,
