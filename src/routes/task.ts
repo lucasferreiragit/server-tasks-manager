@@ -8,7 +8,9 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const tasks = await Task.findAll();
+    const tasks = await Task.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.json(tasks);
   } catch (error) {
     res.status(500).json({
