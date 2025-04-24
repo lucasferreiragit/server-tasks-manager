@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3001;
 
 const syncOptions = {
   // ...(isDevelopment && { force: true }),
+  force: true,
 };
 
 dbConnection
