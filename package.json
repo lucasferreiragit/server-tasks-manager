@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsc",
+    "build": "tsc && cp -r src/config dist/",
     "postinstall": "npm run build",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "vercel-build": "npm run build"
   },
   "keywords": [],
   "author": "",
