@@ -1,5 +1,6 @@
 import { Router } from "express";
-const { Task } = require("../db");
+import { Task } from "../db";
+import { TaskAttributes, TaskCreationAttributes } from "../models/Task";
 
 // TODO: maybe improve this by using a service layer
 
@@ -19,8 +20,12 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { title, description, status, priority } = req.body;
-    const task = await Task.create({ title, description, status, priority });
+    const { title, description, priority } = req.body;
+    const task = await Task.create({
+      title,
+      description,
+      priority,
+    } as TaskCreationAttributes);
     res.status(201).json(task);
   } catch (error) {
     res.status(400).json({
@@ -33,11 +38,10 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-
-    const { title, description, status, priority } = req.body;
+    const { title, description, priority } = req.body;
 
     const [updated] = await Task.update(
-      { title, description, status, priority },
+      { title, description, priority },
       { where: { id } }
     );
 
@@ -46,7 +50,6 @@ router.put("/:id", async (req, res) => {
     }
 
     const updatedTask = await Task.findByPk(id);
-
     res.status(200).json(updatedTask);
   } catch (error) {
     res.status(400).json({

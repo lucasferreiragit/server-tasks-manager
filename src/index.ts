@@ -1,14 +1,11 @@
 const db = require("./db");
 import app from "./server";
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
 const { dbConnection } = db;
 
 const PORT = process.env.PORT || 3001;
 const isDevelopment = process.env.NODE_ENV === "development";
-
-console.log("🚀 > isDevelopment ==> ", isDevelopment);
 
 const syncOptions = {
   ...(isDevelopment && { force: true }),
