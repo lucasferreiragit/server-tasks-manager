@@ -96,6 +96,15 @@ The application uses Sequelize as the ORM with the following configuration:
 - Connection pooling for better performance
 - Automatic table creation in development mode
 
+  
+## Deployment
+
+The application is deployed on Render:
+
+- Free tier with automatic sleep after 15 minutes of inactivity
+- First request after sleep might take longer to respond (cold start)
+- Connection pooling helps maintain database connections
+- Environment variables are managed through Render's dashboard
 ## Contributing
 
 1. Fork the repository
